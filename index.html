@@ -10,7 +10,33 @@
 </head>
 <body>
     <div class="game-wrapper">
-        <div class="top"></div>
+        <div class="top">
+            <div class="position">
+                <label for="player-1">Go first</label>
+                <input type="radio" id="player-1" name="order" value="1" checked>
+
+                <label for="player-2">Go last</label>
+                <input type="radio" id="player-2" name="order" value="2">
+            </div>
+
+            <div class="emblem">
+                <label for="sword">x</label>
+                <input type="radio" id="sword" name="icon" value="sword" checked>
+
+                <label for="shield">o</label>
+                <input type="radio" id="shield" name="icon" value="shield">
+            </div>
+
+            <button class="submit">Submit</button>
+            <button class="test">Test</button>
+            <button class="start">Start game</button>
+            <button class="reset">Reset</button>
+
+            <div class="player-info">
+                <p class="p1-info">Player 1: </p>
+                <p class="p2-info">Player 2: </p>
+            </div>
+        </div>
 
         <div class="outer-board">
             <div class="board"></div>

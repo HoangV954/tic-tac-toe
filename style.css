@@ -38,3 +38,12 @@ body {
     grid-template: repeat(3, 100px) / repeat(3, 100px);
 }
 
+.grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    font-weight: bold;
+    user-select: none;
+}
+

@@ -11,38 +11,127 @@
 <body>
     <div class="game-wrapper">
         <div class="top">
-            <div class="position">
-                <label for="player-1">Go first</label>
-                <input type="radio" id="player-1" name="order" value="1" checked>
+            <div class="modal info">
+                
+                <div class="info-content">
+                    <p class="header">
+                        <span class="knight">Knight</span>  
+                        <span class="v">v</span>
+                        <span class="s">s</span>  
+                        <span class="ai">AI</span>
+                    </p>
+                    <div class="position">
+                        <p>Strategic positioning</p>
+                        <div class="position-content">
+                            <input type="radio" id="player-1" name="order" value="1" checked>
+                            <label for="player-1" class="order">Go first</label>
 
-                <label for="player-2">Go last</label>
-                <input type="radio" id="player-2" name="order" value="2">
+                            <input type="radio" id="player-2" name="order" value="2">
+                            <label for="player-2" class="order">Go second</label>
+                        </div>
+                    </div>
+        
+                    <div class="emblem">
+                        <p>Choose your weapon</p>
+                        <div class="emblem-content">
+                            <label for="sword">
+                                <input type="radio" id="sword" name="icon" value="sword" checked>
+                                <img class="sword" id="x" src="./media/real-sword.gif">
+                                
+                            </label>
+                            <label for="shield">
+                                <input type="radio" id="shield" name="icon" value="shield">
+                                <img class="shield" id="o" src="./media/shield.gif">        
+                            </label>
+                        </div>
+                        
+                    </div>
+        
+                    <button class="submit">I'm ready!</button>
+                </div>   
             </div>
 
-            <div class="emblem">
-                <label for="sword">x</label>
-                <input type="radio" id="sword" name="icon" value="sword" checked>
-
-                <label for="shield">o</label>
-                <input type="radio" id="shield" name="icon" value="shield">
+            <div class="modal start-menu">
+                <p class="header">
+                    <span class="knight">Knight</span>  
+                    <span class="v">v</span>
+                    <span class="s">s</span>  
+                    <span class="ai">AI</span>
+                </p>
+                <div class="menu-content">
+                    <p>Select difficulty</p>
+                    <div class="diff">
+                        <select>                            
+                            <option value="windows">Windows 98</option>
+                            <option value="skynet">Skynet</option>
+                        </select>
+                    </div>
+                    <button class="start">Start game</button>
+                </div>
+                
             </div>
 
-            <button class="submit">Submit</button>
-            <button class="test">Test</button>
-            <button class="start">Start game</button>
-            <button class="reset">Reset</button>
+            <div class="modal ai-win win">
+                <div class="ai-win-content">
+                    <div class="ai-gif">
+                        <img class="announce" src="./media/terminator-1time.gif">
+                        <div class="die-banner">YOU DIED
+                            <p class="die-final">Bow down to the AI overlord</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
 
-            <div class="player-info">
-                <p class="p1-info">Player 1: </p>
-                <p class="p2-info">Player 2: </p>
+            <div class="modal human-win win">
+                
+                <div class="human-win-content">
+                    <div class="human-gif">
+                        <img class="announce" src="./media/heroes3.gif"></div>
+                        <div class="banner">YOU WON</div>
+                        <p class="final">for now...</p>
+                    </div>
+            </div>
+
+            <div class="modal draw">
+                <div class="draw-content">
+                    <div class="draw-gif">
+                        <img class="announce" src="./media/fatality-bros.gif">
+                        <div class="banner-draw">IT'S A DRAW</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal endgame-choices">
+                <div class="endgame-content">
+                    <button class="rematch">Rematch</button>
+                    <button class="reset">Reset</button>
+                </div>
+            </div>
+
+        </div>
+        <div class="game">
+            <div class="player1-info">
+                <p class="p1-info">Knight</p>
+            </div>
+    
+            <div class="outer-board">
+                <div class="board"></div>
+            </div>
+    
+            <div class="player2-info"> 
+                <p class="p2-info">AI</p>
             </div>
         </div>
-
-        <div class="outer-board">
-            <div class="board"></div>
+        
+        <div class="footer">
+            <audio id="start">
+                <source src="./media/the-butcher.mp3">
+            </audio>
+            <audio id="start">
+                <source src="./media/Diablo-laugh.mp3">
+            </audio>
         </div>
-
-        <div class="bottom"></div>
     </div>
 </body>
 </html>

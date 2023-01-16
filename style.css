@@ -1,689 +1,777 @@
-*, *::before, *::after {
-    box-sizing: border-box;
-    
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 @font-face {
-    font-family: war;
-    src: url(./font/tosca-zero-font/ToscaZero-gyA4.otf);
+  font-family: war;
+  src: url(./font/tosca-zero-font/ToscaZero-gyA4.otf);
 }
 
 @font-face {
-    font-family: ai;
-    src: url(./font/Apex-Font/Apex\ Regular.otf);
+  font-family: ai;
+  src: url(./font/Apex-Font/Apex\ Regular.otf);
 }
 
 @font-face {
-    font-family: knight;
-    src: url(./font/moonfark-font/MOONFARK-goova-studio.otf);
+  font-family: knight;
+  src: url(./font/moonfark-font/MOONFARK-goova-studio.otf);
 }
 
 @font-face {
-    font-family: vs;
-    src: url(./font/blackpast/otf/blackpast-blackpast-400.otf);
+  font-family: vs;
+  src: url(./font/blackpast/otf/blackpast-blackpast-400.otf);
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    background: url(./media/lava-city.jpg);
-    background-size: 2200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-    background-position: 10% 10%;
+  margin: 0;
+  padding: 0;
+  background: url(./media/lava-city.jpg);
+  background-size: 2200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-position: 10% 10%;
 }
 
 body::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 button {
-    border: none;
+  border: none;
 }
+
 .game-wrapper {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .outer-board {
-    width: 600px;
-    height: 600px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 600px;
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .board {
-    width: 600px;
-    height: 600px;
-    display: grid;
-    grid-template: repeat(3, 200px) / repeat(3, 200px);
-    
+  width: 600px;
+  height: 600px;
+  display: grid;
+  grid-template: repeat(3, 200px) / repeat(3, 200px);
 }
 
 .grid {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 50px;
-    font-weight: bold;
-    user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  font-weight: bold;
+  user-select: none;
 }
 
-div > img.sword, div > img.shield{
-    width: 180px;
-    height: 180px;
-    animation: slam-animation 2.7s ease-in;
+div>img.sword,
+div>img.shield {
+  width: 180px;
+  height: 180px;
+  animation: slam-animation 2.7s ease-in;
 }
 
-label > img.sword, label > img.shield{
-    width: 80px;
-    height: 80px;
-    cursor: pointer;
+label>img.sword,
+label>img.shield {
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
 }
 
 /* Submit info modal */
 .modal.info {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow-y: hidden;
-    background: url(./media/battlefield-background.jpg);
-    padding-top: 10px;
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: hidden;
+  background: url(./media/battlefield-background.jpg);
+  padding-top: 10px;
 }
-
-
 
 .info-content {
-    position: relative;
-    margin: 15% auto 15% auto; /* Center */
-    width: 25%;
-    padding: 25px 20px 35px 20px;
-    border-radius: 0px;
-    background-color: rgba(133, 132, 143, 0.5);
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-direction: column;
-    box-shadow:
-    inset 0px 0 10px #3c1f1a;
-    font-size: 20px;
-    font-family: war;
+  position: relative;
+  margin: 15% auto 15% auto;
+  /* Center */
+  width: 25%;
+  padding: 25px 20px 35px 20px;
+  border-radius: 0px;
+  background-color: rgba(133, 132, 143, 0.5);
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-direction: column;
+  box-shadow: inset 0px 0 10px #3c1f1a;
+  font-size: 20px;
+  font-family: war;
 }
 
-.position-content > label {
-    width: 130px;
-    height: 70px;
-    padding: 5px 7px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+.position-content>label {
+  width: 130px;
+  height: 70px;
+  padding: 5px 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
-input[name="order"]:checked + .order{
-    background: url(./media/lava-city.jpg);
-    border: 3px solid rgb(211, 60, 60) !important;
-    border-radius: 0px;
-    background-position: 20% 50%;
-    color: white
+input[name="order"]:checked+.order {
+  background: url(./media/lava-city.jpg);
+  border: 3px solid rgb(211, 60, 60) !important;
+  border-radius: 0px;
+  background-position: 20% 50%;
+  color: white;
 }
 
-
-.emblem, .position {
-    display: flex;
-    flex-direction: column;
+.emblem,
+.position {
+  display: flex;
+  flex-direction: column;
 }
 
-.emblem-content, .position-content {
-    display: flex;
-    justify-content: space-around;
+.emblem-content,
+.position-content {
+  display: flex;
+  justify-content: space-around;
 }
-
 
 input[type="radio"] {
-    display: none;
-}
-  
-  /* CHECKED STYLES */
-input[name="icon"]:checked + img{
-    background: url(./media/lava-city.jpg);
-    border: 5px solid rgb(211, 60, 60) !important;
-    border-radius: 55px;
-    background-position: 20% 50%;
+  display: none;
 }
 
-.info-content > .submit {
-    width: 100px;
-    height: 50px;
-    align-self: center;
-    margin-top: 20px;
-    font-family: war;
-    background-color: brown;
-    cursor: pointer;
-    box-shadow: 0 5px rgb(133, 132, 143);
+/* CHECKED STYLES */
+input[name="icon"]:checked+img {
+  background: url(./media/lava-city.jpg);
+  border: 5px solid rgb(211, 60, 60) !important;
+  border-radius: 55px;
+  background-position: 20% 50%;
+}
+
+.info-content>.submit {
+  width: 100px;
+  height: 50px;
+  align-self: center;
+  margin-top: 20px;
+  font-family: war;
+  background-color: brown;
+  cursor: pointer;
+  box-shadow: 0 5px rgb(133, 132, 143);
 }
 
 .submit:hover {
-    border: 5px solid rgb(211, 60, 60);
-    color: white;
-    box-shadow: 0 5px rgb(212, 210, 221);
+  border: 5px solid rgb(211, 60, 60);
+  color: white;
+  box-shadow: 0 5px rgb(212, 210, 221);
 }
 
 .submit:active {
-    box-shadow: 0 2px #666;
-    transform: translateY(4px);
+  box-shadow: 0 2px #666;
+  transform: translateY(4px);
 }
 
 /* Start game modal */
 
 .modal.start-menu {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow-y: hidden;
-    background: url(./media/robot-bg.jpg);
-    padding-top: 10px;
-    
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: hidden;
+  background: url(./media/robot-bg.jpg);
+  padding-top: 10px;
 }
-
-
 
 .menu-content {
-    position: relative;
-    margin: 20% auto 15% auto; /* Center */
-    width: 25%;
-    animation: animatezoom 0.6s;
-    padding: 25px 20px 35px 20px;
-    background-color:  rgba(137,155,159, 0.9);
-    display: flex;
-    gap: 5px;
-    flex-direction: column;
-    box-shadow:
-    inset 0px 0 20px rgb(34,24,23);
-    font-family: war;
-    color: rgb(102, 42, 37);
-    font-size: 20px;
-    font-weight: bold;
+  position: relative;
+  margin: 20% auto 15% auto;
+  /* Center */
+  width: 25%;
+  animation: animatezoom 0.6s;
+  padding: 25px 20px 35px 20px;
+  background-color: rgba(137, 155, 159, 0.9);
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+  box-shadow: inset 0px 0 20px rgb(34, 24, 23);
+  font-family: war;
+  color: rgb(102, 42, 37);
+  font-size: 20px;
+  font-weight: bold;
 }
 
-.diff > select {
-    outline: none;
-    cursor: pointer;
-    border-bottom: solid 3px rgb(102, 42, 37);
-    background-color: rgba(137,155,159, 0.9);
-    font-weight: bold;
-    color: /* rgb(102, 42, 37) */rgb(71, 19, 12);
-    padding-bottom: 2px;
+.diff>select {
+  outline: none;
+  cursor: pointer;
+  border-bottom: solid 3px rgb(102, 42, 37);
+  background-color: rgba(137, 155, 159, 0.9);
+  font-weight: bold;
+  color:
+    /* rgb(102, 42, 37) */
+    rgb(71, 19, 12);
+  padding-bottom: 2px;
 }
 
-select > option[value="windows"] {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif !important;
-    color: rgb(82, 255, 47) !important;
+select>option[value="windows"] {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif !important;
+  color: rgb(82, 255, 47) !important;
 }
 
-select > option[value="skynet"] {
-    color: rgb(221, 27, 9);
-    font-family: war !important;
+select>option[value="skynet"] {
+  color: rgb(221, 27, 9);
+  font-family: war !important;
 }
 
-select > option[value="windows"]:hover, select > option[value="skynet"]:hover {
-    background-color: #162836;
+select>option[value="windows"]:hover,
+select>option[value="skynet"]:hover {
+  background-color: #162836;
 }
 
 .start {
-    width: 100px;
-    height: 50px;
-    align-self: center;
-    margin-top: 20px;
-    font-family: war;
-    cursor: pointer;
-    background-color: brown;
-    box-shadow: 0 5px rgb(90, 90, 94);
+  width: 100px;
+  height: 50px;
+  align-self: center;
+  margin-top: 20px;
+  font-family: war;
+  cursor: pointer;
+  background-color: brown;
+  box-shadow: 0 5px rgb(90, 90, 94);
 }
 
 .start:hover {
-    border: 5px solid rgb(211, 60, 60);
-    color: white;
-    box-shadow: 0 5px rgb(212, 210, 221);
+  border: 5px solid rgb(211, 60, 60);
+  color: white;
+  box-shadow: 0 5px rgb(212, 210, 221);
 }
 
 .start:active {
-    box-shadow: 0 2px #666;
-    transform: translateY(4px);
+  box-shadow: 0 2px #666;
+  transform: translateY(4px);
 }
 
 /* AI - End game modal */
 .modal.ai-win {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow-y: hidden;
-    background-color: rgba(0,0,0,1);
-    padding-top: 10px;
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: hidden;
+  background-color: rgba(0, 0, 0, 1);
+  padding-top: 10px;
 }
 
 .ai-win-content {
-    position: relative;
-    margin: 5% auto 15% auto; /* Center */
-    width: 25%;
-    animation: animatezoom 0.6s;
-    padding: 25px 20px 35px 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-direction: column;
+  position: relative;
+  margin: 5% auto 15% auto;
+  /* Center */
+  width: 25%;
+  animation: animatezoom 0.6s;
+  padding: 25px 20px 35px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-direction: column;
 }
 
 /* Human win */
 
 .modal.human-win {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow-y: hidden;
-    background-color: rgba(0,0,0,1);
-    padding-top: 10px;
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: hidden;
+  background-color: rgba(0, 0, 0, 1);
+  padding-top: 10px;
 }
 
 .human-win-content {
-    position: relative;
-    margin: 5% auto 15% auto; /* Center */
-    width: 25%;
-    animation: animatezoom 0.6s;
-    padding: 25px 20px 35px 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-direction: column;
+  position: relative;
+  margin: 5% auto 15% auto;
+  /* Center */
+  width: 25%;
+  animation: animatezoom 0.6s;
+  padding: 25px 20px 35px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-direction: column;
 }
 
 /* draw */
 
 .modal.draw {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow-y: hidden;
-    background-color: rgba(0,0,0,1);
-    padding-top: 10px;
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: hidden;
+  background-color: rgba(0, 0, 0, 1);
+  padding-top: 10px;
 }
 
 .draw-content {
-    position: relative;
-    margin: 5% auto 15% auto; /* Center */
-    width: 25%;
-    animation: animatezoom 0.6s;
-    padding: 25px 20px 35px 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-direction: column;
+  position: relative;
+  margin: 5% auto 15% auto;
+  /* Center */
+  width: 25%;
+  animation: animatezoom 0.6s;
+  padding: 25px 20px 35px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-direction: column;
 }
 
 @keyframes animatezoom {
-    from {transform: scale(0)} 
-    to {transform: scale(1)}
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(1);
+  }
 }
 
-
 @keyframes slam-animation {
-    0% {
-        opacity: 0;
-        transform: scale(5);
-    }
+  0% {
+    opacity: 0;
+    transform: scale(5);
+  }
 
-    15% {
-        opacity: 1;
-        transform: scale(0.8);
-    }
+  15% {
+    opacity: 1;
+    transform: scale(0.8);
+  }
 
-    50% {
-        opacity: 1;
-        transform: scale(2);
-    }
+  50% {
+    opacity: 1;
+    transform: scale(2);
+  }
 
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* Winner animation */
 
 .shake {
-    animation: shake 0.82s;
-    animation-iteration-count: infinite;
+  animation: shake 0.82s;
+  animation-iteration-count: infinite;
 }
 
 @keyframes shake {
-    0% { transform: translate(1px, 1px) rotate(0deg); }
-  10% { transform: translate(-1px, -2px) rotate(-1deg); }
-  20% { transform: translate(-3px, 0px) rotate(1deg); }
-  30% { transform: translate(3px, 2px) rotate(0deg); }
-  40% { transform: translate(1px, -1px) rotate(1deg); }
-  50% { transform: translate(-1px, 2px) rotate(-1deg); }
-  60% { transform: translate(-3px, 1px) rotate(0deg); }
-  70% { transform: translate(3px, 1px) rotate(-1deg); }
-  80% { transform: translate(-1px, -1px) rotate(1deg); }
-  90% { transform: translate(1px, 2px) rotate(0deg); }
-  100% { transform: translate(1px, -2px) rotate(-1deg); }
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
   }
 
-  /* Grids */
-
-  .game {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    gap: 50px
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
   }
 
-  .board {
-    border: solid 3px white;
-    box-shadow: 0 0 10px #9ecaed;
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
   }
 
-  .grid {
-    border: solid 3px white;
-    box-shadow: 0 0 10px #9ecaed;
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
   }
 
-  /* Endgame choices */
-  .human-gif > img, .ai-gif > img, .draw-gif > img {
-    width: 600px;
-    height: 400px;
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
   }
 
-  
-
-  .human-win-content, .ai-win-content, .draw-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 50%;
-    height: 50%;
-    gap: 50px;
-    
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
   }
 
-  .human-win-content {
-    font-family: knight;
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
   }
 
-  .ai-win-content {
-    font-family: war;
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
   }
 
-  .draw-content {
-    font-family: 'Times New Roman', Times, serif
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
   }
+
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+/* Grids */
+
+.game {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  gap: 50px;
+}
+
+.board {
+  border: solid 3px white;
+  box-shadow: 0 0 10px #9ecaed;
+}
+
+.grid {
+  border: solid 3px white;
+  box-shadow: 0 0 10px #9ecaed;
+}
+
+/* Endgame choices */
+.human-gif>img,
+.ai-gif>img,
+.draw-gif>img {
+  width: 600px;
+  height: 400px;
+}
+
+.human-win-content,
+.ai-win-content,
+.draw-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  height: 50%;
+  gap: 50px;
+}
+
+.human-win-content {
+  font-family: knight;
+}
+
+.ai-win-content {
+  font-family: war;
+}
+
+.draw-content {
+  font-family: "Times New Roman", Times, serif;
+}
 
 .banner-draw {
-    color: rgb(71, 255, 47);
-    font-size: 80px;
-    animation: focus-in-expand 1.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-    word-spacing: 20px;
-    margin-top: 25px;
-    text-align: center;
-    width: 100%;
+  color: rgb(71, 255, 47);
+  font-size: 80px;
+  animation: focus-in-expand 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  word-spacing: 20px;
+  margin-top: 25px;
+  text-align: center;
+  width: 100%;
 }
 
 .banner {
-    color: white;
-    font-size: 100px;
-    animation: focus-in-expand 1.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  color: white;
+  font-size: 100px;
+  animation: focus-in-expand 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 .final {
-    color: white;
-    font-size: 70px;
-    animation: fade-in 7s linear, text-zoom 7s linear;
-    margin-top: -50px;
-    align-self: center;
+  color: white;
+  font-size: 70px;
+  animation: fade-in 7s linear, text-zoom 7s linear;
+  margin-top: -50px;
+  align-self: center;
 }
 
 .die-banner {
-    color: red;
-    font-size: 100px;
-    animation: fade-in 7s linear, text-zoom2 7s linear;
-    text-align: center;
-    margin-top: 20px;
+  color: red;
+  font-size: 100px;
+  animation: fade-in 7s linear, text-zoom2 7s linear;
+  text-align: center;
+  margin-top: 20px;
 }
 
 .die-final {
-    color: red;
-    font-size: 40px;
-    animation: focus-in-expand 9s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-    margin-top: 30px;
-    align-self: center;
-    word-spacing: 10px !important;
+  color: red;
+  font-size: 40px;
+  animation: focus-in-expand 9s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  margin-top: 30px;
+  align-self: center;
+  word-spacing: 10px !important;
 }
 
-.banner, .die-banner {
-    display: flex;
-    flex-direction: column;
-    word-spacing: 20px;
+.banner,
+.die-banner {
+  display: flex;
+  flex-direction: column;
+  word-spacing: 20px;
 }
 
 @keyframes fade-in {
-    0% { opacity: 0; }
-    25% { opacity: 0; }
-    40% { opacity: 1;}
-    100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 0;
+  }
+
+  40% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes text-zoom2 {
-    0% { font-size: 20px; }
-    25% { font-size: 40px; }
-    50% { font-size: 60px; }
-    75% { font-size: 80px; }
-    100% { font-size: 100px; }
+  0% {
+    font-size: 20px;
+  }
+
+  25% {
+    font-size: 40px;
+  }
+
+  50% {
+    font-size: 60px;
+  }
+
+  75% {
+    font-size: 80px;
+  }
+
+  100% {
+    font-size: 100px;
+  }
 }
 
 @keyframes text-zoom {
-    0% { font-size: 14px; }
-    25% { font-size: 28px; }
-    50% { font-size: 42px; }
-    75% { font-size: 56px; }
-    100% { font-size: 70px; }
+  0% {
+    font-size: 14px;
+  }
+
+  25% {
+    font-size: 28px;
+  }
+
+  50% {
+    font-size: 42px;
+  }
+
+  75% {
+    font-size: 56px;
+  }
+
+  100% {
+    font-size: 70px;
+  }
 }
 
 @keyframes focus-in-expand {
-    0% {
-        letter-spacing: -0.5em;
-        -webkit-filter: blur(12px);
-        filter: blur(12px);
-        opacity: 0;
-    }
-    100% {
-        -webkit-filter: blur(0px);
-        filter: blur(0px);
-        opacity: 1;
-    }
+  0% {
+    letter-spacing: -0.5em;
+    -webkit-filter: blur(12px);
+    filter: blur(12px);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
+    opacity: 1;
+  }
 }
 
 .blur {
-    animation: blur 0.7s;
-    animation-fill-mode: forwards;
+  animation: blur 0.7s;
+  animation-fill-mode: forwards;
 }
 
 @keyframes blur {
-    0% {
-        -webkit-filter: blur(0px);
-    }
-    100% {
-        -webkit-filter: blur(5px);
-    }
+  0% {
+    -webkit-filter: blur(0px);
+  }
+
+  100% {
+    -webkit-filter: blur(5px);
+  }
 }
+
 /* End game */
 .modal.endgame-choices {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow-y: hidden;
-    background-color: rgba(0,0,0,1);
-    padding-top: 10px;
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: hidden;
+  background-color: rgba(0, 0, 0, 1);
+  padding-top: 10px;
 }
 
 .endgame-content {
-    position: relative;
-    margin: auto auto 15% auto; /* Center */
-    width: 100%;
-    height: 100%;
-    animation: animatezoom 0.6s;
-    padding: 25px 20px 35px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    gap: 10px;
-    background: url(./media/aidan.jpg);
-    background-size: cover;
+  position: relative;
+  margin: auto auto 15% auto;
+  /* Center */
+  width: 100%;
+  height: 100%;
+  animation: animatezoom 0.6s;
+  padding: 25px 20px 35px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: url(./media/aidan.jpg);
+  background-size: cover;
+  background-position: 10% 50%;
 }
 
-.endgame-content > button {
-    width: 150px;
-    height: 75px;
-    font-family: war;
-    background-color: brown;
-    cursor: pointer;
-    box-shadow: 0 5px rgb(171, 170, 175);
-    font-size: 30px;
+.endgame-content>button {
+  width: 150px;
+  height: 75px;
+  font-family: war;
+  background-color: brown;
+  cursor: pointer;
+  box-shadow: 0 5px rgb(171, 170, 175);
+  font-size: 30px;
+  margin-top: 650px;
 }
 
-.endgame-content > button:hover {
-    border: 5px solid rgb(211, 60, 60);
-    color: white; 
-    box-shadow: 0 5px rgb(212, 210, 221);
+.endgame-content>button:hover {
+  border: 5px solid rgb(211, 60, 60);
+  color: white;
+  box-shadow: 0 5px rgb(212, 210, 221);
 }
 
-.endgame-content > button:active {
-    box-shadow: 0 2px #666;
-    transform: translateY(4px);
+.endgame-content>button:active {
+  box-shadow: 0 2px #666;
+  transform: translateY(4px);
 }
 
-.p1-info, .p2-info {
-    text-align: center;
-    font-family: war;
-    font-size: 50px;
-    color: white;
+.p1-info,
+.p2-info {
+  text-align: center;
+  font-family: war;
+  font-size: 50px;
+  color: white;
 }
 
 .p1-info {
-    font-family: knight;
-    border: black;
-    -webkit-text-stroke: 3px black;
+  font-family: knight;
+  border: black;
+  -webkit-text-stroke: 3px black;
 }
 
 .p2-info {
-    font-family: ai;
-    -webkit-text-stroke: 3px black;
+  font-family: ai;
+  -webkit-text-stroke: 3px black;
 }
 
 /* Logo */
 
-.info-content > .header {
-    position: absolute;
-    color: white;
-    bottom: 420px; 
-    right: -3px;
-    font-style: italic;
+.info-content>.header {
+  position: absolute;
+  color: white;
+  bottom: 420px;
+  right: -3px;
+  font-style: italic;
 }
 
-.modal.start-menu > .header {
-    position: absolute;
-    color: white;
-    bottom: 530px; 
-    left: 550px;
-    font-style: italic;
+.modal.start-menu>.header {
+  position: absolute;
+  color: white;
+  bottom: 530px;
+  left: 550px;
+  font-style: italic;
 }
 
 .header {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
 
-.info-content > .header .knight {
-    color: rgb(1,60,123);
-    -webkit-text-stroke: 3px white;
+.info-content>.header .knight {
+  color: rgb(1, 60, 123);
+  -webkit-text-stroke: 3px white;
 }
 
-.modal.start-menu > .header .ai {
-    color: rgb(112,16,18);
-    -webkit-text-stroke: 3px white;
+.modal.start-menu>.header .ai {
+  color: rgb(112, 16, 18);
+  -webkit-text-stroke: 3px white;
 }
 
-.header > .knight {
-    font-size: 50px;
-    font-family: knight;
-    margin-right: 10px;
-    margin-top: -20px;
-    
+.header>.knight {
+  font-size: 50px;
+  font-family: knight;
+  margin-right: 10px;
+  margin-top: -20px;
 }
 
-.header > .ai {
-    font-size: 70px;
-    font-family: ai;
-    margin-top: 70px;
-    margin-left: 10px;
+.header>.ai {
+  font-size: 70px;
+  font-family: ai;
+  margin-top: 70px;
+  margin-left: 10px;
 }
 
 .v {
-    position: relative;
-    margin-right: -30px;
+  position: relative;
+  margin-right: -30px;
 }
 
 .v::after {
-    content: "";
-    position: absolute;
-    width: 1px;
-    height: 150px;
-    border: solid 2px white;
-    display: inline-block; /* inline by default - cant be transform */
-    border-radius: 120%;
-    transform: rotate(215deg) translateY(15px);
-    left: 20px;
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 150px;
+  border: solid 2px white;
+  display: inline-block;
+  /* inline by default - cant be transform */
+  border-radius: 120%;
+  transform: rotate(215deg) translateY(15px);
+  left: 20px;
 }
 
-.v, .s {
-    font-family: vs;
-    font-size: 60px;
+.v,
+.s {
+  font-family: vs;
+  font-size: 60px;
 }
 
 .s {
-    margin-top: 50px;
+  margin-top: 50px;
 }
-
